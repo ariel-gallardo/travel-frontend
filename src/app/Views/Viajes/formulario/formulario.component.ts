@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { Subscription } from 'rxjs';
 import { Observer } from 'rxjs';
 import Ciudad from 'src/app/Models/Ciudad';
 import Output from 'src/app/Models/Output';
@@ -12,7 +13,10 @@ import { PaisesService } from 'src/app/Services/paises.service';
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.css']
 })
-export class FormularioView implements OnInit {
+export class FormularioView implements OnInit, OnDestroy {
+
+
+  private sPais : Subscription = null;
 
   public Paises : Pagination<Pais[]> = {data : []} as Pagination<Pais[]>;
   public CiudadesOrigen : Ciudad[] = [];
@@ -66,7 +70,11 @@ export class FormularioView implements OnInit {
   }
 
   ngOnInit(): void {
-    this.paisesService.loadPaisesList().subscribe(this.loadData);
+    this.sPais = this.paisesService.loadPaisesList().subscribe(this.loadData);
+  }
+
+  ngOnDestroy(): void{
+    this.sPais.unsubscribe();
   }
 
 }
