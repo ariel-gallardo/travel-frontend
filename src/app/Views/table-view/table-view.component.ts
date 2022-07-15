@@ -15,23 +15,9 @@ import { Subscription } from 'rxjs';
 })
 export class TableView implements OnInit, OnDestroy {
 
-  private sViajes : Subscription = null;
-
-  public Viajes : Pagination<Viaje[]> = {data : []} as Pagination<Viaje[]>;
-
-  private loadData: Observer<Output<Pagination<Viaje[]>>> = {
-      next: output => {
-        this.Viajes = output.data;
-      },
-      error: output => {
-        
-      },
-      complete: () => {}
-  }
-
   displayedColumns = ['paisOrigen', 'paisDestino', 'ciudadOrigen', 'ciudadDestino', 'fechaInicio', 'fechaFin', 'vehiculoAsignado']
   
-  constructor(private viajesServices : ViajesService, private _bottomSheet: MatBottomSheet) {
+  constructor(public viajesServices : ViajesService, private _bottomSheet: MatBottomSheet) {
 
   }
 
@@ -40,10 +26,10 @@ export class TableView implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.sViajes = this.viajesServices.loadViajesList().subscribe(this.loadData);
+    this.viajesServices.loadDataList();
   }
 
   ngOnDestroy(): void{
-    this.sViajes.unsubscribe();
+    
   }
 }

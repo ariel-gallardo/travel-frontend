@@ -5,5 +5,5 @@ export default interface Vehiculo{
     modelo: string 
     color: string 
     tipoVehiculo: string 
-    itsBusy: string 
+    itsBusy: Boolean 
 }

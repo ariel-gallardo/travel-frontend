@@ -3,13 +3,13 @@
     <mat-form-field appearance="legacy">
         <mat-label>Pais de Origen</mat-label>
         <mat-select (selectionChange)="ePaisOrigen$.next($event.value)">
-            <mat-option *ngFor="let p of paisesService.paises$ | async" value="{{p?.id}}">{{p?.nombre}}</mat-option>
+            <mat-option *ngFor="let p of paisesService.data$ | async" value="{{p?.id}}">{{p?.nombre}}</mat-option>
         </mat-select>
     </mat-form-field>
     <mat-form-field appearance="legacy">
         <mat-label>Pais de Destino</mat-label>
         <mat-select (selectionChange)="ePaisDestino$.next($event.value)">
-            <mat-option *ngFor="let p of paisesService.paises$ | async" value="{{p?.id}}">{{p?.nombre}}</mat-option>
+            <mat-option *ngFor="let p of paisesService.data$ | async" value="{{p?.id}}">{{p?.nombre}}</mat-option>
         </mat-select>
     </mat-form-field>   
     <mat-form-field appearance="legacy">

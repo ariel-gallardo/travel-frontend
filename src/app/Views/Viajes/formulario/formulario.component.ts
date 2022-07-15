@@ -36,7 +36,7 @@ export class FormularioView implements OnInit, OnDestroy {
 
   private loadCiudadesOrigen: Observer<MatSelectChange> = {
     next: id => {
-      this.paisesService.paises$.subscribe(paises => {
+      this.paisesService.data$.subscribe(paises => {
         const pais = paises.find(p => p.id == Number(id));
         this.ciudadesOrigen$.next(pais.ciudades)
       })
@@ -46,7 +46,7 @@ export class FormularioView implements OnInit, OnDestroy {
 
   private loadCiudadesDestino: Observer<MatSelectChange> = {
     next: id => {
-      this.paisesService.paises$.subscribe(paises => {
+      this.paisesService.data$.subscribe(paises => {
         const pais = paises.find(p => p.id == Number(id));
         this.ciudadesDestino$.next(pais.ciudades)
       })
@@ -61,7 +61,7 @@ export class FormularioView implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.paisesService.loadPaisesList();
+    this.paisesService.loadDataList();
     this.subPaisOrigen = this.ePaisOrigen$.subscribe(this.loadCiudadesOrigen);
     this.subPaisDestino = this.ePaisDestino$.subscribe(this.loadCiudadesDestino);
   }
