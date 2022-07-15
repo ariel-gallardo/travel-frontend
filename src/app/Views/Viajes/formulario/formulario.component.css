@@ -1,0 +1,12 @@
+#formulario{
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    margin-bottom: 30vh;
+    text-align: center;
+}
+
+.mat-form-field{
+    width: 50%;
+    margin: auto;
+}

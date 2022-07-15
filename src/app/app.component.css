@@ -1,0 +1,25 @@
+:host{
+    display: grid;
+    grid-template-areas:
+        "Navbar"
+        "Main"
+        "Footer"
+    ;
+    height: 100vh;
+}
+
+Navbar{
+    height: 10vh;
+    grid-area: Navbar;
+}
+
+Main{
+    height: 80vh;
+    grid-area: Main;
+    margin: auto;
+}
+
+Footer{
+    height: 10vh;
+    grid-area: Footer;
+}

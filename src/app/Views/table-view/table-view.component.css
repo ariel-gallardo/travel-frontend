@@ -1,0 +1,16 @@
+.mat-table{
+    width: 50vw;
+}
+
+td, th{
+    text-align: center !important;
+}
+
+#viajes-titulo{
+    display: flex;
+}
+
+#viajes-titulo button{
+    margin-left: 1vw;
+    margin-bottom: 1vw;
+}

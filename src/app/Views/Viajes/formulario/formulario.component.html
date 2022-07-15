@@ -1,0 +1,29 @@
+<form id="formulario">
+    <h1>Programar Viaje</h1>
+    <mat-form-field appearance="legacy">
+        <mat-label>Pais de Origen</mat-label>
+        <mat-select (selectionChange)="cambiarOrigen($event)">
+            <mat-option *ngFor="let p of Paises.data" value="{{p?.id}}">{{p?.nombre}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+        <mat-label>Pais de Destino</mat-label>
+        <mat-select (selectionChange)="cambiarDestino($event)">
+            <mat-option *ngFor="let p of Paises.data" value="{{p?.id}}">{{p?.nombre}}</mat-option>
+        </mat-select>
+    </mat-form-field>   
+    <mat-form-field appearance="legacy">
+        <mat-label>Ciudad de Origen</mat-label>
+        <mat-select>
+            <mat-option value="one">First option</mat-option>
+            <mat-option value="two">Second option</mat-option>
+        </mat-select>
+    </mat-form-field>   
+    <mat-form-field appearance="legacy">
+        <mat-label>Ciudad de Destino</mat-label>
+        <mat-select>
+            <mat-option value="one">First option</mat-option>
+            <mat-option value="two">Second option</mat-option>
+        </mat-select>
+    </mat-form-field>         
+</form> 
