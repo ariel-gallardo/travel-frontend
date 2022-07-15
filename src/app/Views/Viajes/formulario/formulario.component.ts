@@ -25,8 +25,12 @@ export class FormularioView implements OnInit, OnDestroy {
   private subPaisOrigen: Subscription
   private subPaisDestino: Subscription
 
+  public minDate : Date;
+  public maxDate : Date;
+
   constructor(private _bottomSheetRef: MatBottomSheetRef<FormularioView>, public paisesService: PaisesService) {
-    
+    this.minDate = new Date()
+    this.maxDate = new Date(this.minDate.getFullYear(),this.minDate.getMonth(),this.minDate.getDate()+10)
   }
 
 

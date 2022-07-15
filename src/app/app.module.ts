@@ -19,6 +19,10 @@ import {MatBottomSheetModule, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA} from '@a
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +31,7 @@ import { MatSelectModule } from '@angular/material/select';
     MainComponent,
     FooterComponent,
     TableView,
-    FormularioView
+    FormularioView,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,10 @@ import { MatSelectModule } from '@angular/material/select';
     MatBottomSheetModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    ReactiveFormsModule,
+    MatNativeDateModule
   ],
   providers: [
     {provide: MatBottomSheetRef, useValue:{}},
