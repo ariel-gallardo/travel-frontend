@@ -22,7 +22,6 @@ export class FormularioView implements OnInit, OnDestroy {
   public ciudadesOrigen$: BehaviorSubject<Ciudad[]> = new BehaviorSubject([]);
   public ciudadesDestino$: BehaviorSubject<Ciudad[]> = new BehaviorSubject([]);
 
-  private subPaises: Subscription
   private subPaisOrigen: Subscription
   private subPaisDestino: Subscription
 
@@ -64,7 +63,6 @@ export class FormularioView implements OnInit, OnDestroy {
   }
   
   ngOnDestroy(): void{
-    this.subPaises.unsubscribe()
     this.subPaisOrigen.unsubscribe()
     this.subPaisDestino.unsubscribe()
   }
