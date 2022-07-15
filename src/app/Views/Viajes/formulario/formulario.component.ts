@@ -1,5 +1,7 @@
-import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { MatSelect, MatSelectChange } from '@angular/material/select';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Subscription } from 'rxjs';
 import { Observer } from 'rxjs';
 import Ciudad from 'src/app/Models/Ciudad';
@@ -15,54 +17,40 @@ import { PaisesService } from 'src/app/Services/paises.service';
 })
 export class FormularioView implements OnInit, OnDestroy {
 
+  public ePaisOrigen$: Subject<MatSelectChange> = new Subject();
+  public ePaisDestino$: Subject<MatSelectChange> = new Subject();
+  public ciudadesOrigen$: BehaviorSubject<Ciudad[]> = new BehaviorSubject([]);
+  public ciudadesDestino$: BehaviorSubject<Ciudad[]> = new BehaviorSubject([]);
 
-  private sPais : Subscription = null;
+  private subPaises: Subscription
+  private subPaisOrigen: Subscription
+  private subPaisDestino: Subscription
 
-  public Paises : Pagination<Pais[]> = {data : []} as Pagination<Pais[]>;
-  public CiudadesOrigen : Ciudad[] = [];
-  public CiudadesDestino : Ciudad[] = [];
-
-  private loadData: Observer<Output<Pagination<Pais[]>>> = {
-    next: output => {
-      this.Paises = output.data;
-    },
-    error: output => {
-      
-    },
-    complete: () => {}
-  }
-
-  private loadCiudadOrigen: Observer<Ciudad[]> = {
-    next: output => {
-      this.CiudadesOrigen = output;
-    },
-    error: output => {
-      
-    },
-    complete: () => {}
-  }
-
-  private loadCiudadDestino: Observer<Ciudad[]> = {
-    next: output => {
-      this.CiudadesDestino= output;
-    },
-    error: output => {
-      
-    },
-    complete: () => {}
-  }
-
-  constructor(private _bottomSheetRef: MatBottomSheetRef<FormularioView>, private paisesService: PaisesService) {
+  constructor(private _bottomSheetRef: MatBottomSheetRef<FormularioView>, public paisesService: PaisesService) {
     
   }
 
-  cambiarOrigen(v){
-    v.value
+
+  private loadCiudadesOrigen: Observer<MatSelectChange> = {
+    next: id => {
+      this.paisesService.paises$.subscribe(paises => {
+        const pais = paises.find(p => p.id == Number(id));
+        this.ciudadesOrigen$.next(pais.ciudades)
+      })
+    },
+    error: id => {},complete: () => {}
   }
 
-  cambiarDestino(v){
-    v.value
+  private loadCiudadesDestino: Observer<MatSelectChange> = {
+    next: id => {
+      this.paisesService.paises$.subscribe(paises => {
+        const pais = paises.find(p => p.id == Number(id));
+        this.ciudadesDestino$.next(pais.ciudades)
+      })
+    },
+    error: id => {},complete: () => {}
   }
+
 
   openLink(event: MouseEvent): void {
     this._bottomSheetRef.dismiss();
@@ -70,11 +58,15 @@ export class FormularioView implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.sPais = this.paisesService.loadPaisesList().subscribe(this.loadData);
+    this.paisesService.loadPaisesList();
+    this.subPaisOrigen = this.ePaisOrigen$.subscribe(this.loadCiudadesOrigen);
+    this.subPaisDestino = this.ePaisDestino$.subscribe(this.loadCiudadesDestino);
   }
-
+  
   ngOnDestroy(): void{
-    this.sPais.unsubscribe();
+    this.subPaises.unsubscribe()
+    this.subPaisOrigen.unsubscribe()
+    this.subPaisDestino.unsubscribe()
   }
 
 }
