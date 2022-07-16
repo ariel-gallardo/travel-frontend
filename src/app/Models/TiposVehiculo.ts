@@ -1,6 +1,6 @@
-import {Vehiculo} from "./"
+import {Vehiculo} from "."
 
-export class TipoVehiculo{
+export class TiposVehiculo{
     id: number
     denominacion: string
     vehiculos : Vehiculo[]

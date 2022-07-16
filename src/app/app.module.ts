@@ -17,6 +17,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { NavbarComponent, MainComponent, FooterComponent } from '@Components';
 import { FormularioView, ViewRoutes, TableView } from '@Views';
 
@@ -50,7 +51,8 @@ import { FormularioView, ViewRoutes, TableView } from '@Views';
   ],
   providers: [
     {provide: MatBottomSheetRef, useValue:{}},
-    {provide: MAT_BOTTOM_SHEET_DATA, useValue:{}}
+    {provide: MAT_BOTTOM_SHEET_DATA, useValue:{}},
+    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}
   ],
   bootstrap: [AppComponent]
 })

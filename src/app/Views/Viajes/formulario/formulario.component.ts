@@ -5,7 +5,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { Subscription } from 'rxjs';
 import { Observer } from 'rxjs';
 import {Ciudad} from '@Models';
-import { PaisesService, TipoVehiculosService } from '@Services';
+import { PaisesService, TiposVehiculoService } from '@Services';
 
 @Component({
   selector: 'app-formulario',
@@ -28,7 +28,7 @@ export class FormularioView implements OnInit, OnDestroy {
   constructor(
       private _bottomSheetRef: MatBottomSheetRef<FormularioView>,
       public paisesService: PaisesService,
-      public tipoVehiculosService : TipoVehiculosService
+      public tiposVehiculoService : TiposVehiculoService
     ) {
       
     this.minDate = new Date()
@@ -64,6 +64,7 @@ export class FormularioView implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.paisesService.loadDataList();
+    this.tiposVehiculoService.loadDataList();
     this.subPaisOrigen = this.ePaisOrigen$.subscribe(this.loadCiudadesOrigen);
     this.subPaisDestino = this.ePaisDestino$.subscribe(this.loadCiudadesDestino);
   }

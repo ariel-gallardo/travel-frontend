@@ -11,24 +11,30 @@
         <mat-select (selectionChange)="ePaisDestino$.next($event.value)">
             <mat-option *ngFor="let p of paisesService.data$ | async" value="{{p?.id}}">{{p?.nombre}}</mat-option>
         </mat-select>
-    </mat-form-field>   
+    </mat-form-field>
     <mat-form-field appearance="legacy">
         <mat-label>Ciudad de Origen</mat-label>
         <mat-select>
             <mat-option *ngFor="let c of ciudadesOrigen$ | async" value="{{c?.id}}">{{c?.nombre}}</mat-option>
         </mat-select>
-    </mat-form-field>   
+    </mat-form-field>
     <mat-form-field appearance="legacy">
         <mat-label>Ciudad de Destino</mat-label>
         <mat-select>
             <mat-option *ngFor="let c of ciudadesDestino$ | async" value="{{c?.id}}">{{c?.nombre}}</mat-option>
         </mat-select>
     </mat-form-field>
+    <mat-form-field appearance="legacy">
+        <mat-label>Tipo de Vehiculo</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let v of tiposVehiculoService.data$ | async" value="{{v?.id}}">{{v?.denominacion}}</mat-option>
+        </mat-select>
+    </mat-form-field>
     <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Fecha de inicio</mat-label>
         <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker">
-        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-hint>DD/MM/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker touchUi #picker></mat-datepicker>
-      </mat-form-field>
-</form> 
+    </mat-form-field>
+</form>
