@@ -4,7 +4,7 @@ import { MatSelectChange } from '@angular/material/select';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Subscription } from 'rxjs';
 import { Observer } from 'rxjs';
-import {Ciudad} from '@Models';
+import {Ciudad, Vehiculo} from '@Models';
 import { PaisesService, TiposVehiculoService } from '@Services';
 
 @Component({
@@ -16,11 +16,14 @@ export class FormularioView implements OnInit, OnDestroy {
 
   public ePaisOrigen$: Subject<MatSelectChange> = new Subject();
   public ePaisDestino$: Subject<MatSelectChange> = new Subject();
+  public eTipoVehiculo$: Subject<MatSelectChange> = new Subject();
   public ciudadesOrigen$: BehaviorSubject<Ciudad[]> = new BehaviorSubject([]);
   public ciudadesDestino$: BehaviorSubject<Ciudad[]> = new BehaviorSubject([]);
+  public vehiculos$: BehaviorSubject<Vehiculo[]> = new BehaviorSubject([]);
 
-  private subPaisOrigen: Subscription
-  private subPaisDestino: Subscription
+  private subPaisOrigen: Subscription;
+  private subPaisDestino: Subscription;
+  private subTipoVehiculo: Subscription;
 
   public minDate : Date;
   public maxDate : Date;
@@ -56,6 +59,16 @@ export class FormularioView implements OnInit, OnDestroy {
     error: id => {},complete: () => {}
   }
 
+  private loadVehiculos: Observer<MatSelectChange> = {
+    next: id => {
+      this.tiposVehiculoService.data$.subscribe(tV => {
+        const tipoVehiculo = tV.find(t => t.id == Number(id));
+        this.vehiculos$.next(tipoVehiculo.vehiculos.filter(v => !v.itsBusy))
+      })
+    },
+    error: id => {},complete: () => {}
+  }
+
 
   openLink(event: MouseEvent): void {
     this._bottomSheetRef.dismiss();
@@ -67,6 +80,7 @@ export class FormularioView implements OnInit, OnDestroy {
     this.tiposVehiculoService.loadDataList();
     this.subPaisOrigen = this.ePaisOrigen$.subscribe(this.loadCiudadesOrigen);
     this.subPaisDestino = this.ePaisDestino$.subscribe(this.loadCiudadesDestino);
+    this.subTipoVehiculo = this.eTipoVehiculo$.subscribe(this.loadVehiculos);
   }
   
   ngOnDestroy(): void{

@@ -7,7 +7,7 @@ export class BaseService<T> {
 
   public urlService : string = `${environment.backendUrl}`;
 
-  private dataOutput$ : BehaviorSubject<Output<Pagination<T[]>>> = new BehaviorSubject({
+  public dataOutput$ : BehaviorSubject<Output<Pagination<T[]>>> = new BehaviorSubject({
     data: {
       data: []
     } as Pagination<T[]>,

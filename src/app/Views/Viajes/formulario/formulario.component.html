@@ -26,8 +26,14 @@
     </mat-form-field>
     <mat-form-field appearance="legacy">
         <mat-label>Tipo de Vehiculo</mat-label>
-        <mat-select>
+        <mat-select (selectionChange)="eTipoVehiculo$.next($event.value)">
             <mat-option *ngFor="let v of tiposVehiculoService.data$ | async" value="{{v?.id}}">{{v?.denominacion}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+        <mat-label>Vehiculo</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let v of vehiculos$ | async" value="{{v?.id}}">{{v?.marca}} {{v?.modelo}} - {{v?.color}}</mat-option>
         </mat-select>
     </mat-form-field>
     <mat-form-field class="example-full-width" appearance="fill">
