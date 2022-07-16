@@ -10,6 +10,5 @@ export class TipoVehiculosService extends BaseService<TipoVehiculo> {
     
     constructor(http: HttpClient){
       super(http)
-      this.addEndpoint('TipoVehiculos')
     }
 }

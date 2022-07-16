@@ -10,7 +10,6 @@ export class ViajesService extends BaseService<Viaje> {
 
   constructor(http: HttpClient){
     super(http)
-    this.addEndpoint('Viajes')
   }
 
 }

@@ -5,7 +5,7 @@ import {Output, Pagination} from '@Models';
 
 export class BaseService<T> {
 
-  private urlService : string = `${environment.backendUrl}`;
+  public urlService : string = `${environment.backendUrl}`;
 
   private dataOutput$ : BehaviorSubject<Output<Pagination<T[]>>> = new BehaviorSubject({
     data: {
@@ -30,11 +30,11 @@ export class BaseService<T> {
     })
   }
 
-  public addEndpoint(endpoint : string){
-    this.urlService = `${this.urlService}/${endpoint}`;
+  public getEndpointUrl(){
+    return `${this.urlService}/${this.constructor.name.replace('Service','')}`;
   }
 
   constructor(private http: HttpClient) {
-    
+    this.urlService = this.getEndpointUrl()
   }
 }
