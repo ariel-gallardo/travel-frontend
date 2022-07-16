@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import {Output, Pagination} from '@Models';
+import { MessageService } from './message.service';
 
 export class BaseService<T> {
 
   public urlService : string = `${environment.backendUrl}`;
 
-  public dataOutput$ : BehaviorSubject<Output<Pagination<T[]>>> = new BehaviorSubject({
+  public paginationOutput$ : BehaviorSubject<Output<Pagination<T[]>>> = new BehaviorSubject({
     data: {
       data: []
     } as Pagination<T[]>,
@@ -16,17 +17,29 @@ export class BaseService<T> {
   });
 
   public dataPagination$: BehaviorSubject<Pagination<T[]>> = new BehaviorSubject({} as Pagination<T[]>);
-  public data$: BehaviorSubject<T[]> = new BehaviorSubject([]);
+  public dataAll$: BehaviorSubject<T[]> = new BehaviorSubject([]);
+  public dataGetOne$ : BehaviorSubject<T> = new BehaviorSubject({} as T);
+  public dataPost$: BehaviorSubject<Output<Boolean>> = new BehaviorSubject({} as Output<Boolean>);
+  public dataPut$: BehaviorSubject<Output<Boolean>> = new BehaviorSubject({} as Output<Boolean>);
+  public dataDelete$: BehaviorSubject<Output<Boolean>> = new BehaviorSubject({} as Output<Boolean>);
 
   public loadDataList(page: number = 1){
     this.http.get<Output<Pagination<T[]>>>(`${this.urlService}/all/${page}`)
     .subscribe(o => {
-      this.dataOutput$.next(o)
+      this.paginationOutput$.next(o)
       if(o.statusCode == 200){
         this.dataPagination$.next(o.data)
-        this.data$.next(o.data.data)
+        this.dataAll$.next(o.data.data)
       }
-        
+      this.messageService.open(o.messages.join(' '))
+    })
+  }
+
+  public createData(data : any){
+    this.http.post<Output<Boolean>>(this.urlService,data)
+    .subscribe(d => {
+      this.dataPost$.next(d)
+      this.messageService.open(d.messages.join(' '))
     })
   }
 
@@ -34,7 +47,7 @@ export class BaseService<T> {
     return `${this.urlService}/${this.constructor.name.replace('Service','')}`;
   }
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private messageService: MessageService) {
     this.urlService = this.getEndpointUrl()
   }
 }

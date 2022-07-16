@@ -1,46 +1,50 @@
-<form id="formulario">
-    <h1>Programar Viaje</h1>
-    <mat-form-field appearance="legacy">
-        <mat-label>Pais de Origen</mat-label>
-        <mat-select (selectionChange)="ePaisOrigen$.next($event.value)">
-            <mat-option *ngFor="let p of paisesService.data$ | async" value="{{p?.id}}">{{p?.nombre}}</mat-option>
-        </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="legacy">
-        <mat-label>Pais de Destino</mat-label>
-        <mat-select (selectionChange)="ePaisDestino$.next($event.value)">
-            <mat-option *ngFor="let p of paisesService.data$ | async" value="{{p?.id}}">{{p?.nombre}}</mat-option>
-        </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="legacy">
-        <mat-label>Ciudad de Origen</mat-label>
-        <mat-select>
-            <mat-option *ngFor="let c of ciudadesOrigen$ | async" value="{{c?.id}}">{{c?.nombre}}</mat-option>
-        </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="legacy">
-        <mat-label>Ciudad de Destino</mat-label>
-        <mat-select>
-            <mat-option *ngFor="let c of ciudadesDestino$ | async" value="{{c?.id}}">{{c?.nombre}}</mat-option>
-        </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="legacy">
-        <mat-label>Tipo de Vehiculo</mat-label>
-        <mat-select (selectionChange)="eTipoVehiculo$.next($event.value)">
-            <mat-option *ngFor="let v of tiposVehiculoService.data$ | async" value="{{v?.id}}">{{v?.denominacion}}</mat-option>
-        </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="legacy">
-        <mat-label>Vehiculo</mat-label>
-        <mat-select>
-            <mat-option *ngFor="let v of vehiculos$ | async" value="{{v?.id}}">{{v?.marca}} {{v?.modelo}} - {{v?.color}}</mat-option>
-        </mat-select>
-    </mat-form-field>
-    <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Fecha de inicio</mat-label>
-        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker">
-        <mat-hint>DD/MM/YYYY</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker touchUi #picker></mat-datepicker>
-    </mat-form-field>
-</form>
+<div>
+    <form id="formulario" (submit)="submitData($event)">
+        <h1>Programar Viaje</h1>
+        <mat-form-field appearance="legacy">
+            <mat-label>Pais de Origen</mat-label>
+            <mat-select #formPaisOrigen (selectionChange)="ePaisOrigen$.next($event.value)">
+                <mat-option *ngFor="let p of paisesService.dataAll$ | async" value="{{p?.id}}">{{p?.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+            <mat-label>Pais de Destino</mat-label>
+            <mat-select #formPaisDestino (selectionChange)="ePaisDestino$.next($event.value)">
+                <mat-option *ngFor="let p of paisesService.dataAll$ | async" value="{{p?.id}}">{{p?.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+            <mat-label>Ciudad de Origen</mat-label>
+            <mat-select #formCiudadOrigen>
+                <mat-option *ngFor="let c of ciudadesOrigen$ | async" value="{{c?.id}}">{{c?.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+            <mat-label>Ciudad de Destino</mat-label>
+            <mat-select #formCiudadDestino>
+                <mat-option *ngFor="let c of ciudadesDestino$ | async" value="{{c?.id}}">{{c?.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+            <mat-label>Tipo de Vehiculo</mat-label>
+            <mat-select #formTipoVehiculo value="0" (selectionChange)="eTipoVehiculo$.next($event.value)">
+                <mat-option *ngFor="let v of tiposVehiculoService.dataAll$ | async" value="{{v?.id}}">{{v?.denominacion}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="legacy">
+            <mat-label>Vehiculo</mat-label>
+            <mat-select #formVehiculo value="0">
+                <mat-option value="0" disabled="disabled">{{smsVehiculos$ | async}}</mat-option>
+                <mat-option *ngFor="let v of vehiculos$ | async" value="{{v?.id}}">{{v?.marca}} {{v?.modelo}} - {{v?.color}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Fecha de inicio</mat-label>
+            <input #formFechaInicio matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #picker></mat-datepicker>
+        </mat-form-field>
+        <button mat-raised-button color="primary">Programar</button>
+    </form>
+</div>

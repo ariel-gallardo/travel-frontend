@@ -18,6 +18,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { NavbarComponent, MainComponent, FooterComponent } from '@Components';
 import { FormularioView, ViewRoutes, TableView } from '@Views';
 
@@ -47,7 +48,8 @@ import { FormularioView, ViewRoutes, TableView } from '@Views';
     MatSelectModule,
     MatDatepickerModule,
     ReactiveFormsModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSnackBarModule
   ],
   providers: [
     {provide: MatBottomSheetRef, useValue:{}},
