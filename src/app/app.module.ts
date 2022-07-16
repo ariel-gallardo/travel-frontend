@@ -21,6 +21,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { NavbarComponent, MainComponent, FooterComponent } from '@Components';
 import { FormularioView, ViewRoutes, TableView } from '@Views';
+import { MessageComponent } from './Components/message/message.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { FormularioView, ViewRoutes, TableView } from '@Views';
     FooterComponent,
     TableView,
     FormularioView,
+    MessageComponent,
   ],
   imports: [
     BrowserModule,

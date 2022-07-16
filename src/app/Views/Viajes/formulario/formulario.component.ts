@@ -67,7 +67,7 @@ export class FormularioView implements OnInit, OnDestroy {
     next: id => {
       this.tiposVehiculoService.dataAll$.subscribe(tV => {
         const tipoVehiculo = tV.find(t => t.id == Number(id));
-        this.vehiculos$.next(tipoVehiculo.vehiculos.filter(v => !v.itsBusy))
+        this.vehiculos$.next(tipoVehiculo.vehiculos.filter(v => v.itsBusy))
       })
     },
     error: id => {},complete: () => {}
@@ -86,11 +86,8 @@ export class FormularioView implements OnInit, OnDestroy {
     error: id => {},complete: () => {}
   }
 
-  @ViewChild('formPaisOrigen') private formPaisOrigen: ElementRef
-  @ViewChild('formPaisDestino') private formPaisDestino: ElementRef
   @ViewChild('formCiudadOrigen') private formCiudadOrigen: ElementRef
   @ViewChild('formCiudadDestino') private formCiudadDestino: ElementRef
-  @ViewChild('formTipoVehiculo') private formTipoVehiculo: ElementRef
   @ViewChild('formVehiculo') private formVehiculo: ElementRef
   @ViewChild('formFechaInicio') private formFechaInicio: ElementRef
 
@@ -98,11 +95,8 @@ export class FormularioView implements OnInit, OnDestroy {
     e.preventDefault()
 
     const formData : FormViaje = new FormViaje(
-      this.formPaisOrigen.nativeElement?.value,
-      this.formPaisDestino.nativeElement?.value,
       this.formCiudadOrigen.nativeElement?.value,
       this.formCiudadDestino.nativeElement?.value,
-      this.formTipoVehiculo.nativeElement?.value,
       this.formVehiculo.nativeElement?.value,
       this.formFechaInicio.nativeElement?.value,
     )

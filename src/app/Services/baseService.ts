@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import {Output, Pagination} from '@Models';
@@ -38,8 +38,8 @@ export class BaseService<T> {
     this.http.post<Output<Boolean>>(this.urlService,data)
     .subscribe(d => {
       this.dataPost$.next(d)
-      this.messageService.open(d.messages.join(' '))
-    })
+      this.messageService.open(d.messages)
+    },err => this.messageService.open(err.error.messages))
   }
 
   public getEndpointUrl(){
