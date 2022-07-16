@@ -1,12 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observer } from 'rxjs/internal/types';
-import Output from 'src/app/Models/Output';
-import Pagination from 'src/app/Models/Pagination';
-import Viaje from 'src/app/Models/Viaje';
 import { ViajesService } from 'src/app/Services/viajes.service';
-import {MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
+import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import { FormularioView } from '../Viajes/formulario/formulario.component';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-table-view',

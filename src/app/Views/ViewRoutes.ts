@@ -1,10 +1,8 @@
 import {Routes} from '@angular/router';
 import {TableView} from './table-view/table-view.component'
 
-const viewRoutes : Routes = [
+export const ViewRoutes : Routes = [
 
     {path: '', component: TableView},
 
 ]
-
-export default viewRoutes

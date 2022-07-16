@@ -1,6 +1,6 @@
-import Vehiculo from "./Vehiculo"
+import {Vehiculo} from "./"
 
-export default class TipoVehiculo{
+export class TipoVehiculo{
     id: number
     denominacion: string
     vehiculos : Vehiculo[]

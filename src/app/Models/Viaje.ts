@@ -1,6 +1,6 @@
-import Vehiculo from "./Vehiculo"
+import {Vehiculo} from "./"
 
-export default interface Viaje{
+export interface Viaje{
     id: number
     paisOrigen : string 
     paisDestino : string

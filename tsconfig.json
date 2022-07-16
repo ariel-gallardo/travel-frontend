@@ -4,6 +4,12 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "paths": {
+      "@Views": ["src/app/Views/index"],
+      "@Services": ["src/app/Services/index"],
+      "@Models": ["src/app/Models/index"],
+      "@Components": ["src/app/Components/index"],
+    },
     "forceConsistentCasingInFileNames": true,
     "strict": false,
     "noImplicitOverride": true,
@@ -16,8 +22,8 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2020",
-    "module": "es2020",
+    "target": "ES2022",
+    "module": "ES2022",
     "lib": [
       "es2020",
       "dom"

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import Pais from '../Models/Pais';
+import {Pais} from '@Models';
 import { BaseService } from './baseService';
 
 @Injectable({
@@ -14,3 +14,4 @@ export class PaisesService extends BaseService<Pais> {
   }
 
 }
+ 

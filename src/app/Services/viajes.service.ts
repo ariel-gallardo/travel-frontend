@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import Viaje from '../Models/Viaje';
+import {Viaje} from '@Models';
 import { BaseService } from './baseService';
 
 @Injectable({

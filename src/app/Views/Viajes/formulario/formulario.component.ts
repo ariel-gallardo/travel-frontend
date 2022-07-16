@@ -1,14 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { MatSelect, MatSelectChange } from '@angular/material/select';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { MatSelectChange } from '@angular/material/select';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { Subscription } from 'rxjs';
 import { Observer } from 'rxjs';
-import Ciudad from 'src/app/Models/Ciudad';
-import Output from 'src/app/Models/Output';
-import Pagination from 'src/app/Models/Pagination';
-import Pais from 'src/app/Models/Pais';
-import { PaisesService } from 'src/app/Services/paises.service';
+import {Ciudad} from '@Models';
+import { PaisesService, TipoVehiculosService } from '@Services';
 
 @Component({
   selector: 'app-formulario',
@@ -28,7 +25,12 @@ export class FormularioView implements OnInit, OnDestroy {
   public minDate : Date;
   public maxDate : Date;
 
-  constructor(private _bottomSheetRef: MatBottomSheetRef<FormularioView>, public paisesService: PaisesService) {
+  constructor(
+      private _bottomSheetRef: MatBottomSheetRef<FormularioView>,
+      public paisesService: PaisesService,
+      public tipoVehiculosService : TipoVehiculosService
+    ) {
+      
     this.minDate = new Date()
     this.maxDate = new Date(this.minDate.getFullYear(),this.minDate.getMonth(),this.minDate.getDate()+10)
   }

@@ -1,6 +1,6 @@
-import Ciudad from "./Ciudad"
+import { Ciudad } from "./"
 
-export default class Pais{
+export  class Pais{
     id: number
     nombre: string 
     ciudades: Ciudad[] 

@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import Output from '../Models/Output';
-import Pagination from '../Models/Pagination';
+import {Output, Pagination} from '@Models';
 
 export class BaseService<T> {
 

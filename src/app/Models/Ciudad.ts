@@ -1,4 +1,4 @@
-export default class Ciudad{
+export class Ciudad{
     id:number
     nombre:string 
     pais:string

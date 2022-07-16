@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import Vehiculo from '../Models/Vehiculo';
-import { BaseService } from './baseService';
+import {Vehiculo} from '@Models';
+import {BaseService} from './baseService';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ import { BaseService } from './baseService';
 
 export class VehiculosService extends BaseService<Vehiculo> {
 
-  constructor(http: HttpClient){
+  constructor(http: HttpClient){ 
     super(http)
     this.addEndpoint('Vehiculos')
   }

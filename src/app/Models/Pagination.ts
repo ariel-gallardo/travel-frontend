@@ -1,4 +1,4 @@
-export default interface Pagination<T>{
+export interface Pagination<T>{
     data: T
     statusCode: number
     backPage: boolean

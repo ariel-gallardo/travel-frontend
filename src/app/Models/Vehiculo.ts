@@ -1,4 +1,4 @@
-export default interface Vehiculo{
+export interface Vehiculo{
     id: number
     patente: string
     marca: string 
