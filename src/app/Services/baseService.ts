@@ -31,7 +31,6 @@ export class BaseService<T> {
         this.dataPagination$.next(o.data)
         this.dataAll$.next(o.data.data)
       }
-      this.messageService.open(o.messages.join(' '))
     })
   }
 
