@@ -24,15 +24,15 @@ export class BaseService<T> {
   public dataPut$: BehaviorSubject<Output<Boolean>> = new BehaviorSubject({} as Output<Boolean>);
   public dataDelete$: BehaviorSubject<Output<Boolean>> = new BehaviorSubject({} as Output<Boolean>);
 
-  public loadDataList(page: number = 1){    
-    this.http.get<Output<Pagination<T[]>>>(`${this.urlService}/all/${page}`)
+  public selectPage: number = 1
+
+  public loadDataList(){    
+    this.http.get<Output<Pagination<T[]>>>(`${this.urlService}/all/${this.selectPage}`)
     .subscribe(o => {
+      this.dataPagination$.next(o.data)
       this.paginationOutput$.next(o)
-      if(o.statusCode == 200){
-        this.dataPagination$.next(o.data)
-        this.dataAll$.next(o.data.data)
-      }
-    })
+      this.dataAll$.next(o.data.data)
+    },err => {this.dataAll$.next([])})
   }
 
   public createData(data : any){
@@ -45,6 +45,15 @@ export class BaseService<T> {
       this.dataPost$.next(d)
       this.messageService.open(d.messages)
     },err => this.messageService.open(err.error.messages))
+  }
+
+  public deleteData(id){
+    this.http.delete<Output<Boolean>>(`${this.urlService}/${id}`)
+    .subscribe(d => {
+      this.dataDelete$.next(d)
+      this.messageService.open(d.messages)
+      this.loadDataList()
+    },err => {this.messageService.open(err.error.messages)})
   }
 
   public getEndpointUrl(){

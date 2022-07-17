@@ -19,10 +19,9 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { NavbarComponent, MainComponent, FooterComponent } from '@Components';
+import { NavbarComponent, MainComponent, FooterComponent, CustomDialogComponent, MessageComponent } from '@Components';
 import { FormularioView, ViewRoutes, TableView } from '@Views';
-import { MessageComponent } from './Components/message/message.component';
-
+import {MatDialogModule, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -33,6 +32,7 @@ import { MessageComponent } from './Components/message/message.component';
     TableView,
     FormularioView,
     MessageComponent,
+    CustomDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,12 +51,13 @@ import { MessageComponent } from './Components/message/message.component';
     MatDatepickerModule,
     ReactiveFormsModule,
     MatNativeDateModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
   providers: [
     {provide: MatBottomSheetRef, useValue:{}},
     {provide: MAT_BOTTOM_SHEET_DATA, useValue:{}},
-    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}
+    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
   ],
   bootstrap: [AppComponent]
 })

@@ -3,6 +3,7 @@ import { ViajesService } from 'src/app/Services/viajes.service';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import { FormularioView } from '../Viajes/formulario/formulario.component';
 import { MatIcon } from '@angular/material/icon';
+import { DialogService } from 'src/app/Services/dialog.service';
 
 @Component({
   selector: 'app-table-view',
@@ -13,7 +14,7 @@ export class TableView implements OnInit, OnDestroy {
 
   displayedColumns = ['paisOrigen', 'paisDestino', 'ciudadOrigen', 'ciudadDestino', 'fechaInicio', 'fechaFin', 'vehiculoAsignado', 'acciones']
   
-  constructor(public viajesServices : ViajesService, private _bottomSheet: MatBottomSheet) {
+  constructor(public viajesServices : ViajesService, private _bottomSheet: MatBottomSheet , private dialogService : DialogService) {
 
   }
 
@@ -22,11 +23,11 @@ export class TableView implements OnInit, OnDestroy {
   }
 
   reprogramViaje(vId){
-    console.log(vId)
+    this.dialogService.openDialog('Reprogramar el viaje','Esta seguro?')
   }
 
   deleteViaje(vId){
-    console.log(vId)
+    this.dialogService.openDialog('Eliminar','Esta seguro?',() => {this.viajesServices.deleteData(vId)});
   }
 
   ngOnInit(): void {
