@@ -14,3 +14,28 @@ td, th{
     margin-left: 1vw;
     margin-bottom: 1vw;
 }
+
+#deleteIcon, #reprogramIcon{
+    font-weight: bold;
+    transition: font-size 0.3s;
+    transition: font-size 0.3s;
+}
+
+#deleteIcon{
+    color: rgba(255,0,0,0.5);
+}
+
+#reprogramIcon{
+    color: rgba(0,0,255,0.5);
+}
+
+#deleteIcon:hover, #reprogramIcon:hover{
+    font-size: 1.6rem;
+}
+
+#deleteIcon:hover{color: rgba(255,0,0,1);}
+#reprogramIcon:hover{color: rgba(0,0,255,1);}
+
+#deleteIconClick, #reprogramIconClick{
+    font-size: 0.5rem;
+}

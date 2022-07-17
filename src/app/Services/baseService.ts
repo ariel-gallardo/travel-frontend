@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import {Output, Pagination} from '@Models';
 import { MessageService } from './message.service';
+import { Inject } from '@angular/core';
 
 export class BaseService<T> {
 
@@ -23,7 +24,7 @@ export class BaseService<T> {
   public dataPut$: BehaviorSubject<Output<Boolean>> = new BehaviorSubject({} as Output<Boolean>);
   public dataDelete$: BehaviorSubject<Output<Boolean>> = new BehaviorSubject({} as Output<Boolean>);
 
-  public loadDataList(page: number = 1){
+  public loadDataList(page: number = 1){    
     this.http.get<Output<Pagination<T[]>>>(`${this.urlService}/all/${page}`)
     .subscribe(o => {
       this.paginationOutput$.next(o)
@@ -35,7 +36,11 @@ export class BaseService<T> {
   }
 
   public createData(data : any){
-    this.http.post<Output<Boolean>>(this.urlService,data)
+    const formData = new FormData()
+    for(const prop in data){
+      formData.append(prop,data[prop])
+    }
+    this.http.post<Output<Boolean>>(this.urlService,formData)
     .subscribe(d => {
       this.dataPost$.next(d)
       this.messageService.open(d.messages)

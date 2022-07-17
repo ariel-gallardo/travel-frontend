@@ -1,11 +1,12 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { MatSelectChange } from '@angular/material/select';
+import { MatSelect, MatSelectChange } from '@angular/material/select';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Subscription } from 'rxjs';
 import { Observer } from 'rxjs';
 import {Ciudad, FormViaje, Vehiculo} from '@Models';
 import { PaisesService, TiposVehiculoService, ViajesService } from '@Services';
+import { MatDatepicker } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-formulario',
@@ -86,20 +87,28 @@ export class FormularioView implements OnInit, OnDestroy {
     error: id => {},complete: () => {}
   }
 
-  @ViewChild('formCiudadOrigen') private formCiudadOrigen: ElementRef
-  @ViewChild('formCiudadDestino') private formCiudadDestino: ElementRef
-  @ViewChild('formVehiculo') private formVehiculo: ElementRef
-  @ViewChild('formFechaInicio') private formFechaInicio: ElementRef
+  @ViewChild('formCiudadOrigen')
+  formCiudadOrigen: MatSelect
+
+  @ViewChild('formCiudadDestino')
+  formCiudadDestino: MatSelect
+
+  @ViewChild('formVehiculo')
+  formVehiculo: MatSelect
+
+  @ViewChild('formFechaInicio')
+  formFechaInicio: ElementRef
 
   public submitData(e){
     e.preventDefault()
 
-    const formData : FormViaje = new FormViaje(
-      this.formCiudadOrigen.nativeElement?.value,
-      this.formCiudadDestino.nativeElement?.value,
-      this.formVehiculo.nativeElement?.value,
-      this.formFechaInicio.nativeElement?.value,
-    )
+    const formData : FormViaje = {
+      ciudadOrigenId: this.formCiudadOrigen.value,
+      ciudadDestinoId: this.formCiudadDestino.value,
+      vehiculoId: this.formVehiculo.value,
+      fechaInicio:  this.formFechaInicio.nativeElement.value
+    }
+
     this.viajesService.createData(formData)
   }
 
