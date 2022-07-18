@@ -1,0 +1,25 @@
+form{
+    display: flex;
+    flex-direction: column;
+    margin-left: 2vw;
+    margin-top: 15vh;
+    padding: 2vw;
+}
+
+#titulo{
+    text-align: center;
+    font-weight: bold;
+}
+
+.mat-form-field{
+    margin-bottom: 2vh;
+}
+
+.widthInput{
+    width: 15vw;
+}
+
+#buttons{
+    display: flex;
+    justify-content: space-between;
+}

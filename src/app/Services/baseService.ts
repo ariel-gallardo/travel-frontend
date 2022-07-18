@@ -60,6 +60,12 @@ export class BaseService<T> {
     return `${this.urlService}/${this.constructor.name.replace('Service','')}`;
   }
 
+  public resetPagination(){
+    this.selectPage = 0;
+    this.loadDataList();
+  }
+
+
   constructor(private http: HttpClient, private messageService: MessageService) {
     this.urlService = this.getEndpointUrl()
   }

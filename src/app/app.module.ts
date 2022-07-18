@@ -15,13 +15,15 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { NavbarComponent, MainComponent, FooterComponent, CustomDialogComponent, MessageComponent } from '@Components';
 import { FormularioView, ViewRoutes, TableView } from '@Views';
-import {MatDialogModule, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialogModule} from '@angular/material/dialog';
+import { FiltrarComponent } from './Views/Viajes/filtrar/filtrar.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import {MatDialogModule, MAT_DIALOG_DATA} from '@angular/material/dialog';
     FormularioView,
     MessageComponent,
     CustomDialogComponent,
+    FiltrarComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,9 @@ import {MatDialogModule, MAT_DIALOG_DATA} from '@angular/material/dialog';
     ReactiveFormsModule,
     MatNativeDateModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule,
+    FormsModule
   ],
   providers: [
     {provide: MatBottomSheetRef, useValue:{}},

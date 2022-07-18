@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { ViajesService } from 'src/app/Services/viajes.service';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
-import { FormularioView } from '../Viajes/formulario/formulario.component';
+import { FormularioView } from '../formulario/formulario.component';
 import { MatIcon } from '@angular/material/icon';
 import { DialogService } from 'src/app/Services/dialog.service';
 
@@ -12,7 +12,7 @@ import { DialogService } from 'src/app/Services/dialog.service';
 })
 export class TableView implements OnInit, OnDestroy {
 
-  displayedColumns = ['paisOrigen', 'paisDestino', 'ciudadOrigen', 'ciudadDestino', 'fechaInicio', 'fechaFin', 'vehiculoAsignado', 'acciones']
+  displayedColumns = ['paisOrigen', 'ciudadOrigen','paisDestino', 'ciudadDestino', 'fechaInicio', 'fechaFin', 'vehiculoAsignado', 'acciones']
   
   constructor(public viajesServices : ViajesService, private _bottomSheet: MatBottomSheet , private dialogService : DialogService) {
 

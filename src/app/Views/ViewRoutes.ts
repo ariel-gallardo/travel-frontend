@@ -1,5 +1,5 @@
 import {Routes} from '@angular/router';
-import {TableView} from './table-view/table-view.component'
+import {TableView} from './Viajes/table-view/table-view.component'
 
 export const ViewRoutes : Routes = [
 

@@ -1,0 +1,39 @@
+<form class="mat-elevation-z8" id="formulario" (submit)="submitData($event)" (reset)="reiniciar()">
+    <h3 id="titulo">Filtrar</h3>
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Rango de fechas</mat-label>
+            <mat-date-range-input [rangePicker]="picker" [disabled]="selRango == false">
+                <input [(ngModel)]="fechaInicial" matStartDate placeholder="Fecha inicial">
+                <input [(ngModel)]="fechaFinal" matEndDate placeholder="Fecha final">
+            </mat-date-range-input>
+            <mat-hint>DD/MM/AAAA – DD/MM/AAAA</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+        <mat-checkbox name="selRango" [(ngModel)]="selRango" labelPosition="before">
+        </mat-checkbox>
+    </div>
+    <div>
+        <mat-form-field class="widthInput" appearance="legacy">
+            <mat-label>Tipo de vehiculo</mat-label>
+            <input [(ngModel)]="tipoVehiculo" matInput placeholder="Tipo de vehiculo..." [disabled]="selTipo == false">
+            <mat-icon matSuffix [color]="selTipo ? 'accent' : ''">directions_car</mat-icon>
+        </mat-form-field>
+        <mat-checkbox name="selTipo" [(ngModel)]="selTipo" labelPosition="before">
+        </mat-checkbox>
+    </div>
+    <div>
+        <mat-form-field class="widthInput" appearance="legacy">
+            <mat-label>Destino</mat-label>
+            <input [(ngModel)]="destino" matInput placeholder="Destino..." [disabled]="selDestino == false">
+            <mat-icon matSuffix [color]="selDestino ? 'accent' : ''">public</mat-icon>
+        </mat-form-field>
+        <mat-checkbox name="selDestino" [(ngModel)]="selDestino" labelPosition="before">
+        </mat-checkbox>
+    </div>
+    <div id="buttons">
+        <button type="button" mat-raised-button color="primary">Buscar</button>
+        <button type="reset" mat-raised-button color="accent">Reiniciar</button>
+    </div>
+</form>
