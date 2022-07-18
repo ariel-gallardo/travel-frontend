@@ -1,0 +1,31 @@
+.mat-toolbar{
+    display: flex;
+    justify-content: space-between;
+}
+
+#secciones span{
+    margin: 2vw;
+    color: rgba(255,255,255,0.5);
+    transition: color 1s;
+}
+
+#secciones span:hover{
+    color: white;
+}
+
+
+.abm p{
+    margin-top: -1vw;
+}
+
+.abm .mat-icon:not(#iconNot){
+    padding-left: 1vw;
+}
+
+#toolbar{
+    height: 10vh;
+}
+
+#secciones{
+    margin-top: -3vh;
+}

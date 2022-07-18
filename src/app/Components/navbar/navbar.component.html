@@ -1,3 +1,23 @@
-<mat-toolbar>
-    
+<mat-toolbar color="primary" id="toolbar">
+    <span>Travel Challenge</span>
+<div id="secciones">
+    <span>
+        <button class="abm" routerLink="/" mat-icon-button aria-label="">
+            <mat-icon id="iconNot">pin_drop</mat-icon>
+            <p>Viajes</p>
+        </button>
+    </span>
+    <span>
+        <button class="abm" routerLink="ciudades" mat-icon-button aria-label="">
+            <mat-icon>language</mat-icon>
+            <p>Ciudades</p>
+        </button>
+    </span>
+    <span>
+        <button class="abm" routerLink="vehiculos" mat-icon-button aria-label="">
+            <mat-icon>minor_crash</mat-icon>
+            <p>Vehiculos</p>
+        </button>
+    </span>
+</div>
 </mat-toolbar>
