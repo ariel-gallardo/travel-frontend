@@ -20,7 +20,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { NavbarComponent, MainComponent, FooterComponent, CustomDialogComponent, MessageComponent } from '@Components';
-import { FormularioView, ViewRoutes, TableView } from '@Views';
+import { FormularioView, ViewRoutes, TableView, VehiculosView, CiudadesView, NotFoundView } from '@Views';
 import {MatDialogModule} from '@angular/material/dialog';
 import { FiltrarComponent } from './Views/Viajes/filtrar/filtrar.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -36,6 +36,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MessageComponent,
     CustomDialogComponent,
     FiltrarComponent,
+    VehiculosView,
+    CiudadesView,
+    NotFoundView
   ],
   imports: [
     BrowserModule,

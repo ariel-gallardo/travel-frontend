@@ -1,0 +1,31 @@
+#statusContainer{
+    display: flex;
+    width: 30vw;
+    flex-wrap: wrap
+}
+
+#title{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+#paragraph p{
+    font-weight: bold;
+    font-size: 3em;
+    color: red;
+}
+
+#paragraph{
+    text-align: center;
+    width: 25vw;
+}
+#title h1{
+    font-size: 10em;
+    color: red;
+}
+
+img{
+    width: 11vw;
+}
