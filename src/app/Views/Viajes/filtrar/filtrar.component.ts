@@ -32,13 +32,13 @@ export class FiltrarComponent implements OnInit {
     e.preventDefault()
 
     const formData = {
-      fechaInicial: this.fechaInicial,
-      fechaFinal: this.fechaFinal,
-      tipoVehiculo: this.tipoVehiculo,
-      destino: this.destino,
-      isRango: this.selRango,
-      isTipo: this.selTipo,
-      isDestino: this.selDestino,
+      FechaInicial: this.fechaInicial,
+      FechaFinal: this.fechaFinal,
+      TipoVehiculo: this.tipoVehiculo,
+      Destino: this.destino,
+      IsRango: this.selRango,
+      IsTipo: this.selTipo,
+      IsDestino: this.selDestino,
     } as FormViajeFilter
 
   }

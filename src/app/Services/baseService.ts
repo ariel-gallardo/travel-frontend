@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import {Output, Pagination} from '@Models';
@@ -26,8 +26,18 @@ export class BaseService<T> {
 
   public selectPage: number = 1
 
-  public loadDataList(){    
-    this.http.get<Output<Pagination<T[]>>>(`${this.urlService}/all/${this.selectPage}`)
+  public loadDataList(data = undefined){
+
+    let params = new HttpParams();
+    if(data){
+      for(const prop in data){
+        params.append(prop,data[prop]);
+      }  
+    }
+  
+    this.http.get<Output<Pagination<T[]>>>(`${this.urlService}/all/${this.selectPage}`,{
+      params
+    })
     .subscribe(o => {
       this.dataPagination$.next(o.data)
       this.paginationOutput$.next(o)

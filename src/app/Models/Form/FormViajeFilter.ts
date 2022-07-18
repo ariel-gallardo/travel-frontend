@@ -1,9 +1,9 @@
 export interface FormViajeFilter{
-    fechaInicial: string
-    fechaFinal: string
-    tipoVehiculo: string
-    destino: string
-    isRango: Boolean
-    isTipo: Boolean
-    isDestino: Boolean
+    FechaInicial: string
+    FechaFinal: string
+    TipoVehiculo: string
+    Destino: string
+    IsRango: Boolean
+    IsTipo: Boolean
+    IsDestino: Boolean
 }
