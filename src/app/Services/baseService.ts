@@ -28,16 +28,15 @@ export class BaseService<T> {
 
   public loadDataList(data = undefined){
 
-    let params = new HttpParams();
+    let url = `${this.urlService}/all/${this.selectPage}`;
     if(data){
+      url = `${url}?`;
       for(const prop in data){
-        params.append(prop,data[prop]);
-      }  
+        url = `${url}${prop}=${data[prop]}&`;
+      }
     }
   
-    this.http.get<Output<Pagination<T[]>>>(`${this.urlService}/all/${this.selectPage}`,{
-      params
-    })
+    this.http.get<Output<Pagination<T[]>>>(url)
     .subscribe(o => {
       this.dataPagination$.next(o.data)
       this.paginationOutput$.next(o)

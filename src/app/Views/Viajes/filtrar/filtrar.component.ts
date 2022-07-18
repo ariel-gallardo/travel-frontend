@@ -15,14 +15,9 @@ export class FiltrarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public selRango: Boolean = false
-  public selTipo: Boolean = false
-  public selDestino: Boolean = false
-
-  public fechaInicial: string
-  public fechaFinal: string
-  public tipoVehiculo: string
-  public destino: string
+  public fechaInicial : Date
+  public fechaFinal : Date
+  public formData = {} as FormViajeFilter
 
   public reiniciar(){
     this.viajesService.resetPagination()
@@ -31,16 +26,14 @@ export class FiltrarComponent implements OnInit {
   public submitData(e: SubmitEvent){
     e.preventDefault()
 
-    const formData = {
-      FechaInicial: this.fechaInicial,
-      FechaFinal: this.fechaFinal,
-      TipoVehiculo: this.tipoVehiculo,
-      Destino: this.destino,
-      IsRango: this.selRango,
-      IsTipo: this.selTipo,
-      IsDestino: this.selDestino,
-    } as FormViajeFilter
-
+    if(this.fechaFinal && this.fechaInicial){
+      this.formData.fechaInicial = this.fechaInicial.toISOString().slice(0,10).replace('-','/').replace('-','/');
+      this.formData.fechaFinal = this.fechaFinal.toISOString().slice(0,10).replace('-','/').replace('-','/');
+    }
+    this.formData.useFilter = (this.formData.isRango || this.formData.isTipo || this.formData.isDestino) && true;
+    if(!this.formData.useFilter)
+      this.formData.useFilter = false
+    this.viajesService.loadDataList(this.formData)
   }
 
 }
