@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { CiudadesService, PaisesService } from '@Services';
+import { FormularioCiudades } from '../formulario/formulario.component';
+import { FormularioPaises } from '../Paises/formulario/formulario.component';
 
 @Component({
   selector: 'app-table-view',
@@ -8,7 +11,7 @@ import { CiudadesService, PaisesService } from '@Services';
 })
 export class CiudadesView implements OnInit {
 
-  constructor(public paisesService : PaisesService, public ciudadesService: CiudadesService) { }
+  constructor(public paisesService : PaisesService, public ciudadesService: CiudadesService, private _bottomSheet: MatBottomSheet) { }
 
   ngOnInit(): void {
     this.paisesService.loadDataList();
@@ -22,11 +25,11 @@ export class CiudadesView implements OnInit {
     "acciones"
   ]
 
-  agregarCiudad(){} 
+  agregarCiudad(){this._bottomSheet.open(FormularioCiudades)} 
   deleteCiudad(id){}
   modifyCiudad(id){}
   
-  agregarPais(){}
+  agregarPais(){this._bottomSheet.open(FormularioPaises)}
   deletePais(id){}
   modifyPais(id){}
 

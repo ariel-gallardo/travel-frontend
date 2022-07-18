@@ -66,3 +66,29 @@ td, th{
     margin-left: 0.5vw;
     margin-bottom: 0.8vw;
 }
+
+#deleteIcon, #modifyIcon{
+    font-weight: bold;
+    transition: font-size 0.3s;
+    transition: font-size 0.3s;
+}
+
+#deleteIcon{
+    color: rgba(255,0,0,0.5);
+}
+
+#modifyIcon{
+    color: rgba(0,0,255,0.5)
+}
+
+#deleteIcon:hover, #modifyIcon:hover{
+    font-size: 1.6rem;
+}
+
+#deleteIcon:hover{color: rgba(255,0,0,1);}
+#modifyIcon:hover{color: rgba(0,0,255,1);}
+
+
+#deleteIconClick, #modifyIconClick{
+    font-size: 0.5rem;
+}
