@@ -1,1 +1,59 @@
-<p>table-view works!</p>
+<div>
+    <div id="tables">
+        <div>
+            <div id="title">
+                <h1>Ciudad</h1>
+                <button mat-mini-fab color="accent" mat-raised-button (click)="agregarCiudad()">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+            <table mat-table [dataSource]="ciudadesService.dataAll$" class="mat-elevation-z8" color="primary">
+                <ng-container matColumnDef="denominacion">
+                    <th mat-header-cell *matHeaderCellDef>Denominacion</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{element.nombre}}
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="pais">
+                    <th mat-header-cell *matHeaderCellDef>Pais</th>
+                    <td mat-cell *matCellDef="let element">
+                        {{element.pais}}
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="acciones">
+                    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                    <td mat-cell *matCellDef="let element">
+                        <mat-icon aria-hidden="false" (click)="deleteCiudad(element.id)">close</mat-icon>
+                        <mat-icon aria-hidden="false" (click)="modifyCiudad(element.id)">settings</mat-icon>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="columnsCiudad"></tr>
+                <tr mat-row *matRowDef="let row; columns: columnsCiudad;"></tr>
+            </table>
+        </div>
+    <div>
+        <div id="title">
+            <h1>Pais</h1>
+            <button mat-mini-fab color="accent" mat-raised-button (click)="agregarPais()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+        <table mat-table [dataSource]="paisesService.dataAll$" class="mat-elevation-z8" color="primary">
+            <ng-container matColumnDef="denominacion">
+                <th mat-header-cell *matHeaderCellDef>Denominacion</th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.nombre}}
+                </td>
+            </ng-container>
+            <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-icon  aria-hidden="false" (click)="deletePais(element.id)">close</mat-icon>
+                    <mat-icon  aria-hidden="false" (click)="modifyPais(element.id)">settings</mat-icon>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="columnsPais"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnsPais;"></tr>
+        </table>
+    </div>
+</div>
