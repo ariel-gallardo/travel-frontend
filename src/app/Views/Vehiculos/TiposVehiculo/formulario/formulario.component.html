@@ -6,7 +6,7 @@
         <mat-icon matSuffix [color]="">abc</mat-icon>
     </mat-form-field>
     <div id="buttons">
-        <button type="submit"  mat-raised-button [color]="id == 0 ? 'primary' : 'accent'">{{id == 0 ? 'Crear' : 'Modificar'}}</button>
+        <button [mat-dialog-close]="true" type="submit"  mat-raised-button [color]="id == 0 ? 'primary' : 'accent'">{{id == 0 ? 'Crear' : 'Modificar'}}</button>
         <button type="reset" mat-raised-button color="warn">Reiniciar</button>
     </div>
 </form>

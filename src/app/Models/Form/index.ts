@@ -1,2 +1,6 @@
 export * from './FormViaje'
 export * from './FormViajeFilter'
+export * from './FormTiposVehiculo'
+export * from './FormVehiculo'
+export * from './FormPaises'
+export * from './FormCiudades'

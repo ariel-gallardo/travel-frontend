@@ -1,5 +1,4 @@
-import { Component, ElementRef, EventEmitter, OnInit, ViewChild } from '@angular/core';
-import { Form, NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { FormViajeFilter } from '@Models';
 import { ViajesService } from '@Services';
 
@@ -23,7 +22,7 @@ export class FiltrarComponent implements OnInit {
     this.viajesService.resetPagination()
   }
 
-  public submitData(e: SubmitEvent){
+  public submitData(e: SubmitEvent){ 
     e.preventDefault()
 
     if(this.fechaFinal && this.fechaInicial){

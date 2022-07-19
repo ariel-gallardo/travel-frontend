@@ -15,7 +15,8 @@ export class DialogService {
       actionTitle : string,
       actionQuestion : string,
       actionTrue : any = () => {},
-      actionFalse : any = () => {}
+      actionFalse : any = () => {},
+      postAction : any = () => {}
     ){
     const dialogRef = this.dialog.open(CustomDialogComponent, {
       data: {

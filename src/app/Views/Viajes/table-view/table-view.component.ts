@@ -8,7 +8,7 @@ import { DialogService } from 'src/app/Services/dialog.service';
 @Component({
   selector: 'app-table-view',
   templateUrl: './table-view.component.html',
-  styleUrls: ['./table-view.component.css']
+  styleUrls: ['./table-view.component.css'] 
 })
 export class TableView implements OnInit, OnDestroy {
 

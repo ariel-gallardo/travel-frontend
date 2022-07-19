@@ -24,6 +24,11 @@ import { FormularioView, ViewRoutes, TableView, VehiculosView, CiudadesView, Not
 import {MatDialogModule} from '@angular/material/dialog';
 import { FiltrarComponent } from './Views/Viajes/filtrar/filtrar.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { CiudadesService } from './Services/ciudades.service';
+import { PaisesService } from './Services/paises.service';
+import { ViajesService } from './Services/viajes.service';
+import { TiposVehiculoService } from './Services/tiposVehiculos.service';
+import { VehiculosService } from './Services/vehiculos.service';
 
 @NgModule({
   declarations: [
@@ -70,6 +75,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     {provide: MatBottomSheetRef, useValue:{}},
     {provide: MAT_BOTTOM_SHEET_DATA, useValue:{}},
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
+    CiudadesService,PaisesService,ViajesService,
+    TiposVehiculoService,VehiculosService
   ],
   bootstrap: [AppComponent]
 })

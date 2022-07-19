@@ -44,6 +44,13 @@ export class BaseService<T> {
     },err => {this.dataAll$.next([])})
   }
 
+  public loadData(id : any){
+    this.http.get<Output<T>>(`${this.urlService}/${id}`)
+    .subscribe(d => {
+      this.dataGetOne$.next(d.data)
+    })
+  }
+
   public createData(data : any){
     const formData = new FormData()
     for(const prop in data){
@@ -53,6 +60,19 @@ export class BaseService<T> {
     .subscribe(d => {
       this.dataPost$.next(d)
       this.messageService.open(d.messages)
+    },err => this.messageService.open(err.error.messages))
+  }
+
+  public modifyData(data : any){
+    const formData = new FormData()
+    for(const prop in data){
+      formData.append(prop,data[prop])
+    }
+    this.http.put<Output<Boolean>>(`${this.urlService}/${data.id}`,formData)
+    .subscribe(d => {
+      this.dataPut$.next(d)
+      this.messageService.open(d.messages)
+      this.loadDataList()
     },err => this.messageService.open(err.error.messages))
   }
 
@@ -70,7 +90,7 @@ export class BaseService<T> {
   }
 
   public resetPagination(){
-    this.selectPage = 0;
+    this.selectPage = 1;
     this.loadDataList();
   }
 

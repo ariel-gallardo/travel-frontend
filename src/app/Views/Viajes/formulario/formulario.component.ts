@@ -6,10 +6,10 @@ import { Subscription } from 'rxjs';
 import { Observer } from 'rxjs';
 import {Ciudad, FormViaje, Vehiculo} from '@Models';
 import { PaisesService, TiposVehiculoService, ViajesService } from '@Services';
-
+ 
 @Component({
   selector: 'app-formulario',
-  templateUrl: './formulario.component.html',
+  templateUrl: './formulario.component.html', 
   styleUrls: ['./formulario.component.css']
 })
 export class FormularioView implements OnInit, OnDestroy {
