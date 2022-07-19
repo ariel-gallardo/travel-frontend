@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatDialog } from '@angular/material/dialog';
 import { TiposVehiculoService, VehiculosService } from '@Services';
 import { FormularioVehiculos } from '../formulario/formulario.component';
 import { FormularioTiposVehiculo } from '../TiposVehiculo/formulario/formulario.component';
@@ -11,7 +11,7 @@ import { FormularioTiposVehiculo } from '../TiposVehiculo/formulario/formulario.
 })
 export class VehiculosView implements OnInit {
 
-  constructor(public vehiculosService : VehiculosService, public tiposVehiculoService : TiposVehiculoService, private _bottomSheet: MatBottomSheet) { }
+  constructor(public vehiculosService : VehiculosService, public tiposVehiculoService : TiposVehiculoService, public dialog: MatDialog) { }
 
   public displayedColumns : string[] = [
     "tipoVehiculo",
@@ -25,10 +25,10 @@ export class VehiculosView implements OnInit {
 
   public columnsTipoVehiculo : string[] = [ "denominacion", "acciones"]
 
-  public agregarVehiculo(){this._bottomSheet.open(FormularioVehiculos)}
-  public agregarTipoVehiculo(){this._bottomSheet.open(FormularioTiposVehiculo)}
-  public modifyVehiculo(id){}
-  public modifyTipoVehiculo(id){}
+  public agregarVehiculo(){this.dialog.open(FormularioVehiculos)}
+  public agregarTipoVehiculo(){this.dialog.open(FormularioTiposVehiculo)}
+  public modifyVehiculo(id){this.dialog.open(FormularioVehiculos)}
+  public modifyTipoVehiculo(id){this.dialog.open(FormularioTiposVehiculo)}
   public deleteVehiculo(id){}
   public deleteTipoVehiculo(id){}
 

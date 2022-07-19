@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PaisesService } from '@Services';
 
 @Component({
   selector: 'formulario-ciudades',
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormularioCiudades implements OnInit {
 
-  constructor() { }
+  constructor(public paisesService : PaisesService) { }
+
+  public id: string = '0'
+  public paisId: string = '0'
+  public nombre: string = ''
+
+  enviarDatos(){
+    
+  }
 
   ngOnInit(): void {
   }

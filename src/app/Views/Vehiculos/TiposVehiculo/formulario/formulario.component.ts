@@ -9,6 +9,13 @@ export class FormularioTiposVehiculo implements OnInit {
 
   constructor() { }
 
+  public id: number = 0
+  public nombre: string
+
+  enviarDatos(){
+    
+  }
+
   ngOnInit(): void {
   }
 

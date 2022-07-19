@@ -1,1 +1,45 @@
-<p>formulario works!</p>
+<form (submit)="enviarDatos()">
+    <h1 id="title">Vehiculo</h1>
+    <mat-form-field appearance="legacy">
+        <mat-label>Tipo de Vehiculo</mat-label>
+        <mat-select [(value)]="tipoVehiculoId">
+            <mat-option value="0">Seleccionar</mat-option>
+            <mat-option *ngFor="let p of tiposVehiculoService.dataAll$ | async" value="{{p?.id}}">{{p?.denominacion}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="widthInput" appearance="legacy">
+        <mat-label>Patente</mat-label>
+        <input [(ngModel)]="patente" [ngModelOptions]="{standalone: true}" matInput placeholder="Patente...">
+        <mat-icon matSuffix [color]="">abc</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="widthInput" appearance="legacy">
+        <mat-label>Marca</mat-label>
+        <input [(ngModel)]="marca" [ngModelOptions]="{standalone: true}" matInput placeholder="Marca...">
+        <mat-icon matSuffix [color]="">abc</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="widthInput" appearance="legacy">
+        <mat-label>Modelo</mat-label>
+        <input [(ngModel)]="modelo" [ngModelOptions]="{standalone: true}" matInput placeholder="Modelo...">
+        <mat-icon matSuffix [color]="">abc</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field class="widthInput" appearance="legacy">
+        <mat-label>Color</mat-label>
+        <input [(ngModel)]="color" [ngModelOptions]="{standalone: true}" matInput placeholder="Color...">
+        <mat-icon matSuffix [color]="">abc</mat-icon>
+    </mat-form-field>
+
+    <div id='ocupado'>
+        <mat-checkbox name="ocupado" [(ngModel)]="ocupado" labelPosition="before">
+            Ocupado
+        </mat-checkbox>
+    </div>
+
+    <div id="buttons">
+        <button type="submit"  mat-raised-button [color]="id == '0' ? 'primary' : 'accent'">{{id == '0' ? 'Crear' : 'Modificar'}}</button>
+        <button type="reset" mat-raised-button color="warn">Reiniciar</button>
+    </div>
+</form>

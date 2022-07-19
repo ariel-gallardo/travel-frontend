@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatDialog } from '@angular/material/dialog';
 import { CiudadesService, PaisesService } from '@Services';
 import { FormularioCiudades } from '../formulario/formulario.component';
 import { FormularioPaises } from '../Paises/formulario/formulario.component';
@@ -11,7 +12,7 @@ import { FormularioPaises } from '../Paises/formulario/formulario.component';
 })
 export class CiudadesView implements OnInit {
 
-  constructor(public paisesService : PaisesService, public ciudadesService: CiudadesService, private _bottomSheet: MatBottomSheet) { }
+  constructor(public paisesService : PaisesService, public ciudadesService: CiudadesService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.paisesService.loadDataList();
@@ -25,13 +26,13 @@ export class CiudadesView implements OnInit {
     "acciones"
   ]
 
-  agregarCiudad(){this._bottomSheet.open(FormularioCiudades)} 
+  agregarCiudad(){this.dialog.open(FormularioCiudades)} 
   deleteCiudad(id){}
-  modifyCiudad(id){}
+  modifyCiudad(id){this.dialog.open(FormularioCiudades)}
   
-  agregarPais(){this._bottomSheet.open(FormularioPaises)}
+  agregarPais(){this.dialog.open(FormularioPaises)}
   deletePais(id){}
-  modifyPais(id){}
+  modifyPais(id){this.dialog.open(FormularioPaises)}
 
   public columnsPais : string[] = [
     "denominacion",
